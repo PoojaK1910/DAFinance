@@ -32,8 +32,10 @@ clean_data=data.fillna(0) ##fillna is fill not available
 ##identifying the total missing values in dataframe (milestone 3)
 missingdata=clean_data.isnull().sum()
 
-print(missingdata) ## this returned the total of all TRUE (NULL values) in each column
-print(clean_data.info()) ##non null values for all columns are 2906 now
+print(missingdata)
+## this returned the total of all TRUE (NULL values) in each column
+print(clean_data.info())
+##non null values for all columns are 2906 now
 print("===============================")
 
 ##Visualize using Matplotlib (milestone 5)
@@ -46,3 +48,12 @@ bitqty=data.btc_total_bitcoins
 plt.bar(x,bitqty)
 plt.show()
 
+import requests
+
+request=requests.get('https://www.alphavantage.co/query?function=DIGITAL_CURRENCY_MONTHLY&symbol=BTC&market=EUR&apikey=R73DEFZ9W84OJYY8')
+print(request.status_code)
+print(request.text)
+
+data=request.json()
+
+print(data['Meta Data'])
